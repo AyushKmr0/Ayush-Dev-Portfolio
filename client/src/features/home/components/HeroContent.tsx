@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { SiGitbook } from "react-icons/si";
 
 import Badge from "../../../components/ui/Badge";
 
@@ -22,6 +23,11 @@ const socialLinks = [
 		name: "LinkedIn",
 		url: "https://www.linkedin.com/in/ayushkmr0",
 		icon: FaLinkedinIn,
+	},
+	{
+		name: "Resume",
+		url: "https://drive.google.com/file/d/1tVeKH_lSFo0nnT6i8a5AvSnzPbbM3P9-/view?usp=drive_link",
+		icon: SiGitbook,
 	},
 ];
 
