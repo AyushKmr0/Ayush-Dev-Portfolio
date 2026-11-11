@@ -44,8 +44,8 @@ export const education: Education[] = [
 	{
 		id: "bsc",
 		degree: "B.Sc. in Computer Applications",
-		institution: "Undergraduate Education",
-		location: "India",
+		institution: "Dr. Shyama Prasad Mukherjee University",
+		location: "Ranchi, Jharkhand",
 		status: "Completed",
 	},
 ];
