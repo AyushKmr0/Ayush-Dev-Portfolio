@@ -26,7 +26,7 @@ const socialLinks = [
 	},
 	{
 		name: "Resume",
-		url: "https://drive.google.com/file/d/1tVeKH_lSFo0nnT6i8a5AvSnzPbbM3P9-/view?usp=drive_link",
+		url: "https://drive.google.com/file/d/1jjN8yScyqzFKNyJsK7DDtuPyNZHBz_4H/view?usp=sharing",
 		icon: SiGitbook,
 	},
 ];
