@@ -1,0 +1,56 @@
+:root {
+	--color-primary: #2563eb;
+	--color-primary-hover: #1d4ed8;
+	--color-primary-light: #eff6ff;
+	--color-primary-soft: #dbeafe;
+
+	--color-background: #f8faff;
+	--color-surface: #ffffff;
+	--color-surface-secondary: #f1f5f9;
+
+	--color-text-primary: #0f172a;
+	--color-text-secondary: #475569;
+	--color-text-muted: #94a3b8;
+
+	--color-border: #e2e8f0;
+	--color-border-strong: #cbd5e1;
+
+	--color-success: #16a34a;
+	--color-warning: #f59e0b;
+	--color-danger: #dc2626;
+
+	--font-sans: "Inter", sans-serif;
+	--font-mono: "JetBrains Mono", monospace;
+
+	--radius-sm: 0.375rem;
+	--radius-md: 0.625rem;
+	--radius-lg: 0.875rem;
+	--radius-xl: 1.25rem;
+
+	--shadow-card: 0 4px 20px rgba(15, 23, 42, 0.05);
+	--shadow-blue: 0 8px 30px rgba(37, 99, 235, 0.12);
+	--shadow-multi-primary:
+		-10px 10px 30px rgba(37, 99, 235, 0.5),
+		10px 10px 30px rgba(249, 105, 0, 0.5);
+	--shadow-multi-secondary:
+		-4px -4px 20px rgba(37, 99, 235, 0.5),
+		4px 4px 20px rgba(249, 105, 0, 0.5);
+	--shadow-blue-hover: 0 0 10px rgba(37, 99, 235, 0.5);
+	--shadow-orange-hover: 0 0 30px rgba(249, 105, 0, 0.5);
+
+	--brand-primary: #2563eb;
+	--brand-primary-dark: #1d4ed8;
+	--brand-background: #f8faff;
+	--brand-surface: #ffffff;
+	--brand-text: #0f172a;
+	--brand-muted: #64748b;
+}
+
+@theme inline {
+	--color-primary: var(--brand-primary);
+	--color-primary-dark: var(--brand-primary-dark);
+	--color-background: var(--brand-background);
+	--color-surface: var(--brand-surface);
+	--color-text: var(--brand-text);
+	--color-muted: var(--brand-muted);
+}

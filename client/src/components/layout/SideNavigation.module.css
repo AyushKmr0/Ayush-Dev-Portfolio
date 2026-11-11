@@ -1,0 +1,140 @@
+.navigation {
+	position: fixed;
+	z-index: 50;
+	top: 50%;
+	right: 2rem;
+	display: none;
+	transform: translateY(-50%);
+}
+
+.track {
+	position: absolute;
+	top: 2rem;
+	bottom: 2rem;
+	left: 50%;
+	width: 1px;
+	background: #bfdbfe;
+	transform: translateX(-50%);
+}
+
+.list {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.item {
+	position: relative;
+	display: flex;
+	width: 3.5rem;
+	height: 4rem;
+	align-items: center;
+	justify-content: center;
+}
+
+.button {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	width: 2.5rem;
+	height: 2.5rem;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	border-radius: 9999px;
+	background: transparent;
+	color: #2563eb;
+	cursor: pointer;
+}
+
+.button:focus-visible {
+	outline: 2px solid #3b82f6;
+	outline-offset: 3px;
+}
+
+.active {
+	border: 2px dotted #fefeff;
+	box-shadow:
+		0 0 0 10px rgba(22, 75, 249, 0.104),
+		20px 20px 50px rgba(255, 106, 0, 0.616), 
+		0px 0px 10px rgba(255, 106, 0, 0.746), 
+		-20px -20px 50px rgba(255, 106, 0, 0.681);
+	background: #1d4ed8;
+	color: #fff;
+}
+
+.dot {
+	width: 0.875rem;
+	height: 0.875rem;
+	border: 1px solid #93c5fd;
+	border-radius: 50%;
+	background: #94a3b8;
+	transition:
+		transform 160ms ease,
+		background-color 160ms ease,
+		border-color 160ms ease;
+}
+
+.button:hover .dot,
+.button:focus-visible .dot {
+	transform: scale(1.2);
+	border-color: #1447e6;
+	background: #1447e6;
+}
+
+.label {
+	position: absolute;
+	top: 50%;
+	right: calc(100% + 0.75rem);
+	display: none;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.55rem 0.75rem;
+	border: 1px solid #64748b;
+	border-radius: 0.625rem;
+	background: #fcfcfc;
+	color: #000;
+	font-size: 0.675rem;
+	font-weight: 600;
+	line-height: 1.25rem;
+	white-space: nowrap;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+.active .label {
+	border-color: #7494fd;
+	color: #1447e6;
+}
+
+.button:hover .label {
+	display: flex;
+}
+
+.arrow {
+	color: #1656f9;
+	font-family: ui-monospace, monospace;
+}
+
+@media (min-width: 768px) {
+	.navigation {
+		display: block;
+		right: 1rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.navigation {
+		right: 2rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.dot {
+		transition: none;
+	}
+}
