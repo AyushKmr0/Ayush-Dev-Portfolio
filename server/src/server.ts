@@ -2,7 +2,6 @@ import "dotenv/config";
 
 import app from "./app.js";
 import { env } from "./config/env.js";
-import { closeContactMailer } from "./modules/contact/contact.mailer.js";
 
 const startServer = async () => {
 	const server = app.listen(env.PORT, () => {
@@ -14,7 +13,6 @@ const startServer = async () => {
 		console.log(`${signal} received. Shutting down...`);
 
 		server.close(() => {
-			closeContactMailer();
 			process.exit(0);
 		});
 	};

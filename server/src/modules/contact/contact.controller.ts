@@ -13,7 +13,7 @@ export const sendContactMessage = asyncHandler(async (req, res) => {
 	} catch (error) {
 		console.error(
 			"Contact email delivery failed:",
-			error instanceof Error ? error.name : "Unknown error",
+			error instanceof Error ? error.message : "Unknown error",
 		);
 		res.status(503).json({
 			success: false,

@@ -9,12 +9,12 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(5000),
 
   CLIENT_ORIGIN: z.string().url(),
-	GMAIL_USER: z.string().trim().email(),
-	GMAIL_APP_PASSWORD: z
-		.string()
-		.trim()
-		.transform((value) => value.replace(/\s+/g, ""))
-		.pipe(z.string().length(16, "Gmail App Password must contain 16 characters.")),
+  CONTACT_TO_EMAIL: z.string().trim().email(),
+  RESEND_API_KEY: z
+    .string()
+    .trim()
+    .regex(/^re_\S+$/, "must be a Resend API key beginning with re_"),
+  RESEND_FROM: z.string().trim().min(3),
 });
 
 const result = envSchema.safeParse(process.env);

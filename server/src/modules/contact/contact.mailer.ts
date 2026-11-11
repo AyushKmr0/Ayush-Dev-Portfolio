@@ -1,18 +1,5 @@
-import nodemailer from "nodemailer";
-
 import { env } from "../../config/env.js";
 import type { ContactMessageInput } from "./contact.schema.js";
-
-const transporter = nodemailer.createTransport({
-	service: "gmail",
-	auth: {
-		user: env.GMAIL_USER,
-		pass: env.GMAIL_APP_PASSWORD,
-	},
-	connectionTimeout: 10_000,
-	greetingTimeout: 10_000,
-	socketTimeout: 20_000,
-});
 
 const escapeHtml = (value: string): string =>
 	value.replace(/[&<>"']/g, (character) => {
@@ -35,12 +22,19 @@ export const sendContactEmail = async (
 	const safeSubjectHtml = escapeHtml(safeSubject);
 	const safeMessage = escapeHtml(input.message);
 
-	await transporter.sendMail({
-		from: { name: "Portfolio Contact Form", address: env.GMAIL_USER },
-		to: env.GMAIL_USER,
-		replyTo: input.email,
-		subject: `[Portfolio] ${safeSubject}`,
-		text: [
+	const response = await fetch("https://api.resend.com/emails", {
+		method: "POST",
+		headers: {
+			Authorization: `Bearer ${env.RESEND_API_KEY}`,
+			"Content-Type": "application/json",
+		},
+		signal: AbortSignal.timeout(10_000),
+		body: JSON.stringify({
+			from: env.RESEND_FROM,
+			to: [env.CONTACT_TO_EMAIL],
+			reply_to: input.email,
+			subject: `[Portfolio] ${safeSubject}`,
+			text: [
 			"New message from your portfolio contact form",
 			"",
 			`Name: ${input.name}`,
@@ -49,8 +43,8 @@ export const sendContactEmail = async (
 			"",
 			"Message:",
 			input.message,
-		].join("\n"),
-		html: `
+			].join("\n"),
+			html: `
 			<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:640px">
 				<h2 style="color:#1d4ed8">New portfolio message</h2>
 				<p><strong>Name:</strong> ${safeName}</p>
@@ -59,8 +53,19 @@ export const sendContactEmail = async (
 				<hr style="border:0;border-top:1px solid #e2e8f0" />
 				<p style="white-space:pre-wrap">${safeMessage}</p>
 			</div>
-		`,
+			`,
+		}),
 	});
-};
 
-export const closeContactMailer = (): void => transporter.close();
+	if (!response.ok) {
+		const body: unknown = await response.json().catch(() => null);
+		const providerMessage =
+			typeof body === "object" && body !== null && "message" in body &&
+			typeof body.message === "string"
+				? body.message
+				: response.statusText;
+		throw new Error(
+			`Resend API request failed (${response.status}): ${providerMessage}`,
+		);
+	}
+};
